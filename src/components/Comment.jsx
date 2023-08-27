@@ -36,7 +36,7 @@ function Comment({ data, setParentsComments, parentComments }) {
             {
                 name: "Abishek Mohanty",
                 comment: input,
-                date: Date.now()
+                date: new Date().toLocaleString('en-US', { timeZone: 'UTC' })
             }
         ]
         setComments(newComments)
