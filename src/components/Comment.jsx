@@ -22,10 +22,7 @@ const CommentContainer = styled(FlexContainer)`
         padding: 2px 5px;
     }
 `
-const Date = styled.p`
-    font-size: 10px;
-    margin-left: .5rem;
-`
+
 
 
 // eslint-disable-next-line react/prop-types
@@ -39,7 +36,7 @@ function Comment({ data, setParentsComments, parentComments }) {
             {
                 name: "Abishek Mohanty",
                 comment: input,
-                date: Date().toLocaleString('en-US', { timeZone: 'UTC' })
+                date: Date.now()
             }
         ]
         setComments(newComments)
@@ -58,7 +55,7 @@ function Comment({ data, setParentsComments, parentComments }) {
             <img src="https://lh3.googleusercontent.com/ogw/AGvuzYYYNMR4PI_sGzUXo8HCzyRrigOoP1I8rOKYg2iKJRc=s32-c-mo" alt="" />
             <div>
                 <FlexContainer style={{ alignItems: 'center' }}>
-                    <h3>{data.name} </h3> <Date> {data.date}</Date>
+                    <h3>{data.name} </h3><p style={{ marginLeft: '5px', fontSize: '10px' }}> {data.date}</p>
                 </FlexContainer>
 
                 <p>{data.comment}</p>
