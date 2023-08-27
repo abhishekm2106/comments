@@ -24,11 +24,12 @@ function App() {
       {
         name: "Abishek Mohanty",
         comment: input,
-        date: new Date().toLocaleString('en-US', { timeZone: 'UTC' })
+        date: new Date().toLocaleString('en-US')
       }
     ]
     console.log(newComments)
     setComments(newComments)
+    setInput('')
   }
 
   return (

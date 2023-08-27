@@ -5,12 +5,13 @@ import InputBox from "./InputBox"
 
 
 const FlexContainer = styled.div`
-        padding: .5rem;
+        
         display: flex;
         
     `
 
 const CommentContainer = styled(FlexContainer)`
+padding: .5rem;
     img{
         width:auto; 
         height:50px;
@@ -29,14 +30,14 @@ const CommentContainer = styled(FlexContainer)`
 function Comment({ data, setParentsComments, parentComments }) {
     const [reply, setReply] = useState(false)
     const [comments, setComments] = useState([])
-    function onPostClick(input) {
-        console.log("on post click called")
+    function onPost(input) {
+        console.log("on post called")
         const newComments = [
             ...comments,
             {
                 name: "Abishek Mohanty",
                 comment: input,
-                date: new Date().toLocaleString('en-US', { timeZone: 'UTC' })
+                date: new Date().toLocaleString('en-US')
             }
         ]
         setComments(newComments)
@@ -55,7 +56,7 @@ function Comment({ data, setParentsComments, parentComments }) {
             <img src="https://lh3.googleusercontent.com/ogw/AGvuzYYYNMR4PI_sGzUXo8HCzyRrigOoP1I8rOKYg2iKJRc=s32-c-mo" alt="" />
             <div>
                 <FlexContainer style={{ alignItems: 'center' }}>
-                    <h3>{data.name} </h3><p style={{ marginLeft: '5px', fontSize: '10px' }}> {data.date}</p>
+                    <h3>{data.name} </h3><p style={{ marginLeft: '5px', fontSize: '10px', fontWeight: 'bold' }}> {data.date}</p>
                 </FlexContainer>
 
                 <p>{data.comment}</p>
@@ -64,7 +65,7 @@ function Comment({ data, setParentsComments, parentComments }) {
                     {/* <button>edit</button> */}
                     <button onClick={() => setReply(!reply)}>reply</button>
                 </FlexContainer>
-                {reply ? <InputBox onClick={onPostClick} /> : ''}
+                {reply && <InputBox onSubmit={onPost} />}
                 {
                     comments.map(comment => <Comment data={comment} key={comment.date} setParentsComments={setComments} parentComments={comments} />)
                 }

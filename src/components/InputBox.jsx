@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { styled } from "styled-components"
 
-const InputBoxElement = styled.div`
+const InputBoxElement = styled.form`
     display: flex;
 
     button{
@@ -12,12 +12,12 @@ const InputBoxElement = styled.div`
 `
 
 // eslint-disable-next-line react/prop-types
-function InputBox({ onClick }) {
+function InputBox({ onSubmit }) {
     const [input, setInput] = useState('')
     return (
-        <InputBoxElement>
+        <InputBoxElement onSubmit={(e) => { e.preventDefault(); onSubmit(input) }}>
             <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
-            <button onClick={() => onClick(input)}>Post</button>
+            <button type="submit">Post</button>
         </InputBoxElement>
     )
 }
